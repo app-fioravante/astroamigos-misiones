@@ -17,7 +17,7 @@ section{max-width:1100px;margin:0 auto;padding:5rem 1.25rem 1rem}
 button{font:inherit;color:inherit;cursor:pointer}
 #bar{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--sun),var(--pnk),var(--vio));z-index:20}
 header{position:sticky;top:calc(10px + env(safe-area-inset-top,0px));z-index:10;display:flex;justify-content:center;padding:0 .75rem}
-nav{display:flex;gap:.2rem;overflow-x:auto;max-width:100%;background:rgba(255,255,255,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--ln);border-radius:999px;padding:.3rem;box-shadow:0 8px 30px rgba(40,60,140,.12)}
+nav{display:flex;flex-wrap:wrap;justify-content:center;gap:.2rem;max-width:100%;background:rgba(255,255,255,.75);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--ln);border-radius:26px;padding:.3rem;box-shadow:0 8px 30px rgba(40,60,140,.12)}
 nav a{white-space:nowrap;padding:.45rem .9rem;border-radius:999px;color:var(--mu);text-decoration:none;font-weight:600;font-size:.92rem;transition:.2s}
 nav a:hover{background:var(--ink);color:#fff}
 /* hero */
@@ -79,8 +79,27 @@ canvas{display:block;width:100%;height:min(80vw,520px)}
 .mn{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
 .mn svg{width:150px;height:150px;filter:drop-shadow(0 12px 24px rgba(91,69,240,.3));animation:bob 6s ease-in-out infinite alternate}
 @keyframes bob{to{transform:translateY(-10px) rotate(4deg)}}
+/* historia */
+.sh{font-size:1.3rem;margin:2.4rem 0 1rem}
+.hs{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.hh{display:flex;align-items:center;gap:.7rem;margin-bottom:.5rem}.hh h3{font-size:1.05rem}
+.hh i{display:block;flex:none;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--a),var(--b) 72%);box-shadow:inset -4px -3px 7px rgba(0,0,0,.25)}
+.tl{list-style:none;margin:0;padding:0 0 0 1.6rem;border-left:3px dashed var(--ln);display:grid;gap:1.1rem}
+.tl li{position:relative}
+.tl li::before{content:"";position:absolute;left:calc(-1.6rem - 9px);top:1.3rem;width:15px;height:15px;border-radius:50%;background:var(--c);box-shadow:0 0 0 4px var(--bg)}
+.tl .card{padding:1.1rem 1.4rem}.tl h3{font-size:1.15rem;margin-bottom:.3rem}
+.pv{display:flex;flex-wrap:nowrap;gap:.5rem;margin-top:1rem}
+.pv button{flex:1 1 0;min-width:0;white-space:nowrap;background:#fff;border:1px solid var(--ln);border-radius:999px;padding:.8rem .4rem;font-weight:600;font-size:clamp(.82rem,3.6vw,1.15rem);transition:transform .2s,box-shadow .2s}
+.pv button:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(40,60,140,.18)}
+dialog{border:1px solid var(--ln);border-radius:28px;padding:1.4rem;width:min(92vw,520px);max-height:80vh;overflow:auto;background:var(--pn);color:var(--ink);box-shadow:0 30px 80px rgba(40,60,140,.3);animation:pop .35s cubic-bezier(.2,.9,.3,1.4)}
+dialog::backdrop{background:rgba(15,26,60,.4);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.dh{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:.9rem}.dh .hh{margin:0}
+.dh button{flex:none;background:#fff;border:1px solid var(--ln);border-radius:999px;padding:.4rem .95rem;font-weight:600}
+.lt{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.95rem}
+.lt caption{text-align:left;color:var(--mu);font-size:.85rem;padding-bottom:.5rem}
+.lt td{border-top:1px solid var(--ln);padding:.6rem .7rem;overflow-wrap:anywhere}.lt td+td{border-left:1px solid var(--ln)}
 footer{max-width:1100px;margin:4rem auto 0;padding:1.5rem 1.25rem 2.5rem;color:var(--mu);font-size:.88rem;border-top:1px solid var(--ln)}
-@media(max-width:760px){.det,.g2,.pc{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.st{grid-template-columns:1fr 1fr}.big{margin:auto}.orb{opacity:.45}}
+@media(max-width:760px){.det,.g2,.pc,.hs{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.st{grid-template-columns:1fr 1fr}.big{margin:auto}.orb{opacity:.45}nav a{padding:.4rem .7rem;font-size:.88rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style></head><body>
 <div id="bar"></div>
@@ -101,7 +120,45 @@ footer{max-width:1100px;margin:4rem auto 0;padding:1.5rem 1.25rem 2.5rem;color:v
  <div class="cta"><a class="btn a" href="#sistema">Explorar el Sistema Solar</a><a class="btn b" href="#luna">Ver la Luna de hoy</a></div>
 </section>
 
-<header><nav aria-label="Secciones"><a href="#sistema">Sistema Solar</a><a href="#telescopios">Telescopios</a><a href="#binoculares">Binoculares</a><a href="#galaxia">Vía Láctea</a><a href="#luna">Luna de hoy</a></nav></header>
+<header><nav aria-label="Secciones"><a href="#historia">Nuestra Historia</a><a href="#sistema">Sistema Solar</a><a href="#telescopios">Telescopios</a><a href="#binoculares">Binoculares</a><a href="#galaxia">Vía Láctea</a><a href="#luna">Luna de hoy</a></nav></header>
+
+<section id="historia">
+ <h2>Nuestra Historia</h2>
+ <div class="card" style="margin-bottom:1.6rem">
+  <p>Astroamigos Misiones tiene como fundador a Rómulo Fioravante, el 4 de agosto de 2011, y su objetivo principal siempre fue divulgar la ciencia de la astronomía por medio de la observación del cielo con telescopio astronómico.</p>
+  <p style="margin-top:.8rem">También desarrolló cursos introductorios, eventos de observación astronómica, charlas, entrevistas en TV y radio, etc., en toda la provincia de Misiones. Ha visitado también Corrientes y Chaco.</p>
+  <p class="dato" style="margin-top:1rem;animation:none">Actualmente la actividad se desarrolla por las redes sociales y web en internet.</p>
+ </div>
+ <p class="lead">De 2011 a 2025, Astroamigos Misiones llevó el telescopio a la vereda, a las plazas, a las escuelas y a las fiestas de la región. Descubriendo el Universo junto a vos.</p>
+ <div class="hs">
+  <div class="card"><div class="hh"><i style="--a:#fff2b0;--b:#ff9d1c"></i><h3>4 de agosto: empezamos</h3></div><p>Comienzan las actividades comunitarias, observando con telescopio en la vereda: en la costanera, la plaza 9 de Julio y distintos barrios de Posadas.</p></div>
+  <div class="card"><div class="hh"><i style="--a:#ffc2d6;--b:#ff5d8f"></i><h3>Evento InOM</h3></div><p>Noche Internacional de Observación de la Luna en la Costanera de Posadas, con apoyo del Rotaract y la Municipalidad de Posadas.</p></div>
+  <div class="card"><div class="hh"><i style="--a:#cfc6ff;--b:#5b45f0"></i><h3>Primer curso y Planetario Móvil</h3></div><p>El primer curso de astronomía para principiantes, con apoyo de la Municipalidad de Posadas, y el Planetario Móvil Astroamigo en escuelas primarias de Posadas.</p></div>
+  <div class="card"><div class="hh"><i style="--a:#a5ecd4;--b:#13a37a"></i><h3>Misiones y Jardín de Estrellas</h3></div><p>Visitas a localidades de la provincia con telescopio en la vereda, y el Jardín de Estrellas en el Jardín Botánico de Posadas, con apoyo de la Municipalidad de Posadas.</p></div>
+ </div>
+
+ <h3 class="sh">Año por año</h3>
+ <ol class="tl">
+  <li style="--c:var(--sun)"><div class="card"><h3>2011–2013</h3><p>Curso de astronomía para principiantes cada año, con apoyo de la Municipalidad de Posadas.</p></div></li>
+  <li style="--c:var(--pnk)"><div class="card"><h3>2014</h3><p>Curso para principiantes con apoyo de la Municipalidad de Posadas.</p></div></li>
+  <li style="--c:var(--grn)"><div class="card"><h3>2016–2017</h3><p>Actividad digital con sitio web y redes sociales.</p></div></li>
+  <li style="--c:var(--vio)"><div class="card"><h3>2018</h3><p>Campus Party Posadas. Seguimos con la actividad digital en el sitio web y las redes sociales.</p></div></li>
+  <li style="--c:var(--pnk)"><div class="card"><h3>2019</h3><p>Fiesta del Inmigrante, en Oberá (Misiones), con apoyo de la Municipalidad de Oberá, y Fiesta de las Raíces, en Jardín América. También seguimos con la actividad digital.</p></div></li>
+  <li style="--c:var(--grn)"><div class="card"><h3>2020</h3><p>Actividad digital con sitio web y redes sociales.</p></div></li>
+  <li style="--c:var(--sun)"><div class="card"><h3>2022</h3><p>Actividad digital con sitio web y redes sociales.</p></div></li>
+ </ol>
+
+ <h3 class="sh">Dónde estuvimos</h3>
+ <div class="st">
+  <div class="card"><b data-n="15">0</b><span>ciudades con eventos comunitarios</span></div>
+  <div class="card"><b data-n="3">0</b><span>provincias: Misiones, Corrientes y Chaco</span></div>
+  <div class="card"><b data-n="11">0</b><span>ciudades misioneras</span></div>
+  <div class="card"><b>2011</b><span>año en que empezamos</span></div>
+ </div>
+ <div class="pv" role="group" aria-label="Provincias visitadas: tocá una para ver las ciudades"><button type="button" data-i="0" aria-haspopup="dialog">Misiones</button><button type="button" data-i="1" aria-haspopup="dialog">Corrientes</button><button type="button" data-i="2" aria-haspopup="dialog">Chaco</button></div>
+ <dialog id="dl" aria-labelledby="dt"><div class="dh"><div class="hh"><i id="di"></i><h3 id="dt"></h3></div><button type="button" id="dx">Cerrar</button></div><table class="lt" id="lt"></table></dialog>
+ <p class="dato" style="margin-top:2rem;animation:none">Sitio original creado por Rómulo Fioravante, fundador de Astroamigos Misiones, Astronomía Aficionada.</p>
+</section>
 
 <section id="sistema">
  <h2>Nuestro vecindario cósmico</h2>
@@ -230,6 +287,18 @@ gal();
 /* contadores */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);const t=+e.target.dataset.n,t0=performance.now();(function f(now){const k=Math.min(1,(now-t0)/1400),v=Math.round(t*(1-Math.pow(1-k,3)));e.target.textContent=v.toLocaleString('es-AR');if(k<1)requestAnimationFrame(f)})(t0)}),{threshold:.6});
 E('[data-n]',b=>io.observe(b));
+/* donde estuvimos */
+(function(){const D=[['Misiones','#fff2b0','#ff9d1c',['Posadas','Apóstoles','Santa Ana','Tres Capones','Alem','Oberá','Jardín América','Montecarlo','Puerto Rico','Puerto Piray','Puerto Iguazú']],['Corrientes','#ffc2d6','#ff5d8f',['Corrientes Capital','Ituzaingó','Virasoro']],['Chaco','#a5ecd4','#13a37a',['Resistencia']]];
+ let cur=-1;const dl=$('dl');
+ function draw(){if(cur<0)return;const d=D[cur],L=d[3],c=Math.min(L.length,innerWidth<520?2:3);let r='';
+  for(let i=0;i<L.length;i+=c)r+='<tr>'+Array.from({length:c},(_,k)=>`<td>${L[i+k]||''}</td>`).join('')+'</tr>';
+  $('dt').textContent=d[0];$('di').style.cssText=`--a:${d[1]};--b:${d[2]}`;
+  $('lt').innerHTML=`<caption>${L.length} ${L.length>1?'ciudades':'ciudad'}</caption>`+r}
+ document.querySelector('.pv').onclick=e=>{const b=e.target.closest('button');if(!b)return;cur=+b.dataset.i;draw();dl.showModal()};
+ $('dx').onclick=()=>dl.close();
+ dl.addEventListener('click',e=>{const r=dl.getBoundingClientRect();if(e.target===dl&&(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom))dl.close()});
+ dl.addEventListener('close',()=>{cur=-1});
+ addEventListener('resize',draw)})();
 /* luna */
 (function(){const JD=Date.now()/864e5+2440587.5,f=(((JD-2451550.1)/29.530588)%1+1)%1,c=Math.cos(2*Math.PI*f),k=(1-c)/2,rx=(40*Math.abs(c)).toFixed(1);
  const d=`M0 -40A40 40 0 0 0 0 40A${rx} 40 0 0 ${c>0?1:0} 0 -40Z`;const p=$('lp');p.setAttribute('d',d);if(f>.5)p.setAttribute('transform','scale(-1 1)');
