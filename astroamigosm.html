@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#050914">
+<title>Astroamigos Misiones</title>
+<meta name="description" content="Astroamigos Misiones: videos del club de astronomía aficionada de Posadas, Misiones, actualizados automáticamente desde YouTube.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%230b1430'/%3E%3Cpath d='M32 10l6 16 17 1-13 11 4 17-14-10-14 10 4-17L9 27l17-1z' fill='%23ffb454'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#050914; --card:rgba(255,255,255,.05); --borde:rgba(255,255,255,.13);
+  --txt:#e9eefc; --txt2:#a9b6d6; --acento:#ffb454; --acento2:#62d2ff;
+  --radio:16px; --sombra:0 12px 32px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;color:var(--txt);
+  font:400 1rem/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:
+    radial-gradient(1100px 600px at 85% -10%,rgba(60,90,210,.28),transparent 70%),
+    radial-gradient(900px 500px at -10% 25%,rgba(130,60,180,.22),transparent 70%),
+    var(--bg);
+  background-attachment:fixed;
+}
+a{color:var(--acento2)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--acento2);outline-offset:2px;border-radius:6px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.saltar{position:absolute;left:1rem;top:-4rem;background:var(--acento);color:#1a1206;padding:.5rem 1rem;border-radius:8px;z-index:60;font-weight:600}
+.saltar:focus{top:1rem}
+#cielo{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.envoltura{max-width:1200px;margin:0 auto;padding:clamp(1rem,3vw,2.5rem) clamp(1rem,3vw,2rem) 3rem}
+
+/* Cabecera */
+.cabecera{padding:clamp(.5rem,2vw,1.5rem) 0 .5rem}
+.marca{display:flex;align-items:center;gap:clamp(.75rem,2vw,1.4rem)}
+.logo{width:clamp(52px,10vw,92px);height:auto;flex:none;filter:drop-shadow(0 0 18px rgba(255,180,84,.35))}
+.sobretitulo{margin:0 0 .3rem;color:var(--acento);letter-spacing:.09em;text-transform:uppercase;font-size:clamp(.68rem,.6rem+.3vw,.82rem);font-weight:700}
+h1{margin:0;font-size:clamp(2rem,1.1rem+4.6vw,3.9rem);line-height:1.04;letter-spacing:-.025em;overflow-wrap:anywhere;
+  background:linear-gradient(90deg,#fff 0%,#ffe2b4 55%,#ffb454 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.intro{margin:1rem 0 0;max-width:62ch;color:var(--txt2);font-size:clamp(.95rem,.9rem+.3vw,1.1rem)}
+.barra-estado{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem 1rem;margin-top:1.25rem}
+.estado{margin:0;display:inline-flex;align-items:center;gap:.55rem;font-size:.9rem;color:var(--txt2);padding:.4rem .85rem;border:1px solid var(--borde);border-radius:999px;background:var(--card);max-width:100%}
+.estado::before{content:"";width:.6rem;height:.6rem;border-radius:50%;background:#53e0a1;flex:none;box-shadow:0 0 8px #53e0a1}
+.estado.carga::before{background:var(--acento2);box-shadow:0 0 8px var(--acento2);animation:pulso 1s ease-in-out infinite}
+.estado.aviso::before{background:var(--acento);box-shadow:0 0 8px var(--acento)}
+.estado.error::before{background:#ff6b6b;box-shadow:0 0 8px #ff6b6b}
+@keyframes pulso{50%{opacity:.25}}
+.acciones{display:flex;gap:.6rem;flex-wrap:wrap}
+.btn{font:inherit;font-weight:650;font-size:.92rem;cursor:pointer;border:1px solid transparent;border-radius:999px;padding:.55rem 1.05rem;background:var(--acento);color:#1a1206;transition:filter .15s,transform .15s;text-decoration:none;display:inline-block}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{transform:translateY(1px)}
+.btn--sec{background:transparent;color:var(--txt);border-color:var(--borde)}
+.btn--sec:hover{background:rgba(255,255,255,.08)}
+.btn[disabled]{opacity:.55;cursor:progress}
+
+/* Secciones */
+.seccion{margin-top:clamp(2rem,5vw,3.4rem)}
+.seccion-cab{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem;margin-bottom:1.1rem}
+h2{margin:0;font-size:clamp(1.35rem,1.1rem+1.3vw,2rem);line-height:1.15;display:flex;align-items:center;gap:.7rem}
+h2::before{content:"";width:.35rem;height:1.3em;border-radius:4px;background:linear-gradient(var(--acento),var(--acento2))}
+.cuenta{color:var(--txt2);font-size:.92rem}
+
+/* Tarjetas */
+.feat{display:grid;gap:1.25rem}
+@media(min-width:600px){.feat{grid-template-columns:1fr 1fr}.feat .card--grande{grid-column:1/-1}}
+@media(min-width:900px){
+  .feat{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr)}
+  .feat .card--grande{grid-column:1;grid-row:span 3}
+  .feat .card--fila{grid-column:2;display:grid;grid-template-columns:minmax(120px,40%) minmax(0,1fr)}
+  .feat .card--fila .thumb{height:100%;aspect-ratio:auto;min-height:96px}
+}
+.rejilla{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr))}
+.card{display:flex;flex-direction:column;min-width:0;background:var(--card);border:1px solid var(--borde);border-radius:var(--radio);overflow:hidden;backdrop-filter:blur(6px);transition:transform .2s,border-color .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);border-color:rgba(255,180,84,.55);box-shadow:var(--sombra)}
+.thumb{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;background:#000;cursor:pointer;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}
+.card:hover .thumb img{transform:scale(1.04)}
+.play{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(transparent 45%,rgba(0,0,0,.5))}
+.play svg{width:clamp(40px,16%,64px);height:auto;opacity:.9;transition:transform .2s,opacity .2s}
+.thumb:hover .play svg,.thumb:focus-visible .play svg{opacity:1;transform:scale(1.1)}
+.card--fila .play svg{width:clamp(30px,34%,44px)}
+.insignia{position:absolute;top:.6rem;left:.6rem;background:var(--acento);color:#1a1206;font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:.15rem .6rem;border-radius:999px}
+.cuerpo{padding:.9rem 1rem 1.1rem;display:flex;flex-direction:column;gap:.4rem;min-width:0}
+.titulo{margin:0;font-size:clamp(1rem,.94rem+.35vw,1.2rem);line-height:1.3;font-weight:650;overflow-wrap:anywhere;hyphens:auto}
+.titulo a{color:var(--txt);text-decoration:none;background:linear-gradient(var(--acento),var(--acento)) 0 100%/0 2px no-repeat;transition:background-size .25s}
+.titulo a:hover,.titulo a:focus-visible{background-size:100% 2px}
+.card--grande .titulo{font-size:clamp(1.25rem,1rem+1.7vw,1.95rem);line-height:1.2}
+.card--grande .cuerpo{padding:1.1rem 1.3rem 1.4rem;gap:.55rem}
+.card--normal .titulo,.card--fila .titulo{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.meta{margin:0;font-size:.85rem;color:var(--txt2)}
+.desc{margin:.1rem 0;color:#c9d3ee;font-size:clamp(.92rem,.88rem+.2vw,1rem);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere}
+
+/* Herramientas y años */
+.herramientas{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-bottom:.4rem}
+.busca{flex:1 1 240px}
+.busca input,.orden select{width:100%;font:inherit;color:var(--txt);background:rgba(255,255,255,.06);border:1px solid var(--borde);border-radius:999px;padding:.55rem 1rem}
+.busca input::placeholder{color:var(--txt2)}
+.orden select option{color:#111}
+.anio{margin-top:1rem;border:1px solid var(--borde);border-radius:var(--radio);background:rgba(255,255,255,.025)}
+.anio>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:.75rem;padding:.85rem 1rem;font-weight:750;font-size:clamp(1.05rem,1rem+.5vw,1.3rem)}
+.anio>summary::-webkit-details-marker{display:none}
+.anio>summary::before{content:"▸";color:var(--acento);transition:transform .2s}
+.anio[open]>summary::before{transform:rotate(90deg)}
+.anio .num{margin-left:auto;font-weight:500;font-size:.85rem;color:var(--txt2)}
+.anio .rejilla{padding:.25rem 1rem 1.1rem}
+.vacio{padding:1.5rem;border:1px dashed var(--borde);border-radius:var(--radio);color:var(--txt2);text-align:center}
+.vacio p{margin:.2rem 0 .9rem}
+.vacio .acciones{justify-content:center}
+
+/* Carga */
+.esq{min-height:230px;border-radius:var(--radio);border:1px solid var(--borde);background:linear-gradient(100deg,rgba(255,255,255,.04) 30%,rgba(255,255,255,.1) 50%,rgba(255,255,255,.04) 70%) 0 0/200% 100%;animation:brillo 1.4s linear infinite}
+@keyframes brillo{to{background-position:-200% 0}}
+
+/* Pie */
+.pie{margin-top:clamp(2.5rem,6vw,4rem);padding-top:1.4rem;border-top:1px solid var(--borde);color:var(--txt2);font-size:.9rem}
+.pie p{margin:.3rem 0}
+
+/* Diálogos y aviso */
+dialog{border:1px solid var(--borde);border-radius:18px;padding:0;background:#0b1430;color:var(--txt);width:min(960px,calc(100vw - 1.5rem));max-height:calc(100dvh - 1.5rem);overflow:auto;box-shadow:var(--sombra)}
+dialog::backdrop{background:rgba(2,5,14,.82);backdrop-filter:blur(3px)}
+.dlg-barra{display:flex;justify-content:flex-end;padding:.6rem .7rem}
+.visor{aspect-ratio:16/9;background:#000;width:100%}
+.visor iframe{width:100%;height:100%;border:0;display:block}
+.visor-respaldo{position:relative;width:100%;height:100%;display:grid;place-items:center;overflow:auto}
+.visor-respaldo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.3}
+.visor-respaldo div{position:relative;display:grid;gap:.8rem;justify-items:center;text-align:center;padding:1rem 1.25rem;max-width:36rem}
+.visor-respaldo p{margin:0;font-size:.9rem;color:var(--txt)}
+.dlg-cuerpo{padding:1rem 1.25rem 1.3rem}
+.dlg-cuerpo h2,.dlg-cuerpo h3{margin:0 0 .5rem;font-size:clamp(1.1rem,1rem+.8vw,1.5rem);line-height:1.25;overflow-wrap:anywhere;display:block}
+.dlg-cuerpo h2::before{display:none}
+.dlg-desc{white-space:pre-wrap;overflow-wrap:anywhere;color:#c9d3ee;font-size:.95rem;margin:.8rem 0 0}
+.dlg-botones{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem}
+.toast{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%);z-index:80;max-width:min(560px,calc(100vw - 2rem));background:var(--acento);color:#1a1206;font-weight:650;padding:.7rem 1.1rem;border-radius:14px;box-shadow:var(--sombra)}
+.toast[hidden]{display:none}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<canvas id="cielo" aria-hidden="true"></canvas>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<div class="envoltura">
+  <header class="cabecera">
+    <div class="marca">
+      <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <radialGradient id="g1" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#ffe2b4"/><stop offset="1" stop-color="#ff9a2e"/></radialGradient>
+        </defs>
+        <ellipse cx="32" cy="34" rx="29" ry="9" fill="none" stroke="#62d2ff" stroke-width="2" transform="rotate(-18 32 34)" opacity=".85"/>
+        <circle cx="32" cy="32" r="14" fill="url(#g1)"/>
+        <circle cx="52" cy="14" r="2" fill="#fff"/><circle cx="11" cy="15" r="1.4" fill="#fff"/><circle cx="55" cy="50" r="1.2" fill="#fff"/>
+      </svg>
+      <div>
+        <p class="sobretitulo">Club de Astronomía Aficionada · Posadas, Misiones</p>
+        <h1>Astroamigos Misiones</h1>
+      </div>
+    </div>
+    <p class="intro">Todos los videos del club en un solo lugar. La página se actualiza sola cada vez que se publica un video nuevo.</p>
+    <div class="barra-estado">
+      <p id="estado" class="estado carga" role="status" aria-live="polite">Buscando videos…</p>
+      <div class="acciones">
+        <button id="btn-actualizar" class="btn" type="button">↻ Actualizar ahora</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="seccion" aria-labelledby="t-ultimos">
+      <div class="seccion-cab"><h2 id="t-ultimos">Últimos videos</h2></div>
+      <div id="ultimos" class="feat"></div>
+    </section>
+
+    <section class="seccion" id="seccion-archivo" aria-labelledby="t-archivo" hidden>
+      <div class="seccion-cab">
+        <h2 id="t-archivo">Más videos</h2>
+        <span id="cuenta" class="cuenta" aria-live="polite"></span>
+      </div>
+      <div class="herramientas">
+        <label class="busca"><span class="sr">Buscar por título o tema</span>
+          <input id="q" type="search" placeholder="Buscar por título o tema…" autocomplete="off"></label>
+        <label class="orden"><span class="sr">Orden</span>
+          <select id="orden">
+            <option value="desc">Más recientes primero</option>
+            <option value="asc">Más antiguos primero</option>
+          </select></label>
+        <button id="btn-todo" class="btn btn--sec" type="button">Expandir todo</button>
+      </div>
+      <div id="archivo"></div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Los videos se muestran desde YouTube y pertenecen a sus autores.</p>
+  </footer>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+<dialog id="dlg-video" aria-labelledby="vid-titulo">
+  <div class="dlg-barra"><button id="vid-cerrar" class="btn btn--sec" type="button">Cerrar ✕</button></div>
+  <div id="vid-visor" class="visor"></div>
+  <div class="dlg-cuerpo">
+    <h3 id="vid-titulo"></h3>
+    <p id="vid-meta"></p>
+    <div class="dlg-botones"><a id="vid-enlace" class="btn" target="_blank" rel="noopener noreferrer">Ver en YouTube ↗</a></div>
+    <div id="vid-desc" class="dlg-desc"></div>
+  </div>
+</dialog>
+
+<noscript><p style="padding:1rem;text-align:center">Esta página necesita JavaScript para mostrar los videos.</p></noscript>
+
+<script>
+(() => {
+'use strict';
+
+/* ============================================================
+   CONFIGURACIÓN (todo lo editable está aquí)
+   ============================================================ */
+const CONFIG = {
+  // Solo se muestran videos cuyo título o descripción mencionen alguna de estas palabras
+  // (se ignoran tildes, mayúsculas, espacios y guiones: "Astro Amigos" también coincide).
+  filtro: ['astroamigos'],
+  incluirIds: [],      // IDs de video que siempre se muestran (aunque no mencionen el filtro)
+  excluirIds: [],      // IDs de video que nunca se muestran
+  destacados: 4,       // cantidad de videos recientes destacados arriba
+  refrescoMin: 10,     // cada cuántos minutos se busca contenido nuevo mientras la página está abierta
+  maxPaginasApi: 20,   // 20 páginas × 50 = hasta 1000 videos por canal
+  // Clave global de YouTube Data API v3 (opcional). Si cada canal tiene la suya abajo, esta se ignora.
+  apiKey: '',
+  // Canales de YouTube de donde se leen los videos (no se muestran en la página).
+  // Pegá acá la API key de cada canal para cargar TODO el historial desde GitHub Pages.
+  //   ⚠ Importante: restringí la clave por «Sitios web» en Google Cloud Console usando
+  //   tu dominio de GitHub Pages (ej. https://usuario.github.io) para que sea segura.
+  // Sin clave, se usan vías alternativas (RSS + proxies) que traen solo los videos recientes.
+  canales: [
+    { id: 'UC0eavbH6-ksO70_6L1aS4fw', apiKey: 'AIzaSyBDc98EP8gUL9xVsIUU-iONsiSWdSExfAw' },
+    { id: 'UC0GuxL42_IpO6yQklgYSJQw', apiKey: 'AIzaSyBqDjxTh2melDwzZgfVVkCOqXzH2r5XGM4' }
+  ]
+};
+
+const CACHE_KEY = 'astroamigos.cache.v2';
+const SOLO_KEY  = 'astroamigos.solo';
+
+/* ============================================================
+   Utilidades
+   ============================================================ */
+const $ = (s, r = document) => r.querySelector(s);
+const LS = {
+  get(k){ try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v){ try { localStorage.setItem(k, v); } catch {} },
+  del(k){ try { localStorage.removeItem(k); } catch {} }
+};
+const enc = encodeURIComponent;
+const sinTildes = s => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const compacto  = s => sinTildes(s).replace(/[^a-z0-9]+/g, '');
+const ts = v => Date.parse(v.date) || 0;
+const urlVideo = id => 'https://www.youtube.com/watch?v=' + enc(id);
+const fmtFecha = new Intl.DateTimeFormat('es-AR', { day: 'numeric', month: 'long', year: 'numeric' });
+const fmtNum = new Intl.NumberFormat('es-AR', { notation: 'compact', compactDisplay: 'long', maximumFractionDigits: 1 });
+const rtf = new Intl.RelativeTimeFormat('es', { numeric: 'auto' });
+
+function hace(ms){
+  const d = (Date.now() - ms) / 1000;
+  for (const [u, s] of [['year', 31536000], ['month', 2592000], ['day', 86400], ['hour', 3600], ['minute', 60]]){
+    if (d >= s) return rtf.format(-Math.floor(d / s), u);
+  }
+  return 'hace instantes';
+}
+
+function h(tag, attrs, ...hijos){
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})){
+    if (v == null || v === false) continue;
+    if (k === 'class') el.className = v;
+    else if (k.startsWith('on')) el.addEventListener(k.slice(2), v);
+    else el.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of hijos.flat()){
+    if (c == null || c === false) continue;
+    el.append(c.nodeType ? c : String(c));
+  }
+  return el;
+}
+
+function linkificar(texto, cont){
+  const re = /(https?:\/\/[^\s<>"']+)/g;
+  let ultimo = 0, m;
+  while ((m = re.exec(texto))){
+    if (m.index > ultimo) cont.append(texto.slice(ultimo, m.index));
+    const url = m[1].replace(/[.,;:!?)\]]+$/, '');
+    cont.append(h('a', { href: url, target: '_blank', rel: 'noopener noreferrer nofollow' }, url));
+    const resto = m[1].slice(url.length);
+    if (resto) cont.append(resto);
+    ultimo = m.index + m[1].length;
+  }
+  if (ultimo < texto.length) cont.append(texto.slice(ultimo));
+}
+
+function resumen(desc, max = 220){
+  const t = (desc || '').replace(/https?:\/\/\S+/g, '').replace(/\s+/g, ' ').trim();
+  return t.length > max ? t.slice(0, max - 1).trimEnd() + '…' : t;
+}
+
+const ICONO_PLAY = '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="rgba(5,9,20,.7)" stroke="#fff" stroke-width="2"/><path d="M26 20v24l20-12z" fill="#fff"/></svg>';
+
+/* ============================================================
+   Estado y filtro
+   ============================================================ */
+const state = {
+  videos: [], cargando: false, ultimaActualizacion: null, ultimoIntento: 0,
+  sinConexion: false, parcial: false, reintentos: 0, reintentoPendiente: false,
+  soloClub: LS.get(SOLO_KEY) !== '0', orden: 'desc', busqueda: '', anios: new Map()
+};
+
+const esDelClub = v => {
+  if (CONFIG.incluirIds.includes(v.id)) return true;
+  const t = compacto(v.title), d = compacto(v.desc);
+  return CONFIG.filtro.some(p => { const k = compacto(p); return k && (t.includes(k) || d.includes(k)); });
+};
+const mostrar = v => !!v && !!v.id && !CONFIG.excluirIds.includes(v.id) && (!state.soloClub || esDelClub(v));
+const visibles = () => state.videos.filter(mostrar);
+
+function cargarCache(){
+  const raw = LS.get(CACHE_KEY);
+  if (!raw) return;
+  try {
+    const o = JSON.parse(raw);
+    if (Array.isArray(o.videos)){
+      state.videos = o.videos.filter(v => v && v.id);
+      state.ultimaActualizacion = o.t || null;
+    }
+  } catch {}
+}
+function guardarCache(){
+  LS.set(CACHE_KEY, JSON.stringify({ t: state.ultimaActualizacion, videos: state.videos }));
+}
+function combinar(nuevos){
+  const mapa = new Map(state.videos.map(v => [v.id, v]));
+  for (const n of nuevos){
+    if (!n || !n.id) continue;
+    const fusion = { ...(mapa.get(n.id) || {}) };
+    for (const [k, val] of Object.entries(n)) if (val != null && val !== '') fusion[k] = val;
+    mapa.set(n.id, fusion);
+  }
+  state.videos = [...mapa.values()];
+}
+
+/* ============================================================
+   Obtención de datos (YouTube)
+   Se prueban varias vías en orden; gana la primera que responde.
+   ============================================================ */
+async function fetchTexto(url, ms = 12000){
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
+  try {
+    // Petición simple, sin cabeceras extra, para que los servicios intermedios no la rechacen.
+    const r = await fetch(url, { signal: ctrl.signal });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return await r.text();
+  } finally { clearTimeout(t); }
+}
+
+// Lanza las vías de a una (la siguiente arranca si la anterior falla o tarda) y devuelve la primera que tenga éxito.
+function carrera(fns, retraso = 1500){
+  return new Promise((ok, fail) => {
+    let siguiente = 0, fallidos = 0, fin = false, ultimo;
+    const lanzar = () => {
+      if (fin || siguiente >= fns.length) return;
+      const fn = fns[siguiente++];
+      const t = setTimeout(lanzar, retraso);
+      let p;
+      try { p = Promise.resolve(fn()); } catch (e) { p = Promise.reject(e); }
+      p.then(v => { if (!fin){ fin = true; clearTimeout(t); ok(v); } },
+             e => { ultimo = e; clearTimeout(t); if (++fallidos === fns.length){ if (!fin) fail(ultimo); } else lanzar(); });
+    };
+    lanzar();
+  });
+}
+
+function parseFeed(xml, canal){
+  const doc = new DOMParser().parseFromString(xml, 'text/xml');
+  if (doc.querySelector('parsererror')) throw new Error('XML inválido');
+  const lista = [...doc.getElementsByTagName('entry')].map(e => {
+    const g = n => { const el = e.getElementsByTagName(n)[0]; return el ? el.textContent : ''; };
+    const st = e.getElementsByTagName('media:statistics')[0];
+    const vistas = st ? parseInt(st.getAttribute('views'), 10) : NaN;
+    return {
+      id: g('yt:videoId'), title: g('title').trim(), desc: g('media:description').slice(0, 700),
+      date: g('published'), canal: canal.id, vistas: Number.isFinite(vistas) ? vistas : null
+    };
+  }).filter(v => v.id);
+  if (!lista.length) throw new Error('Sin videos en la respuesta');
+  return lista;
+}
+
+function decodificarDataUri(s){
+  const i = s.indexOf('base64,');
+  if (i < 0) return decodeURIComponent(s.slice(s.indexOf(',') + 1));
+  const bin = atob(s.slice(i + 7));
+  return new TextDecoder('utf-8').decode(Uint8Array.from(bin, ch => ch.charCodeAt(0)));
+}
+
+const feedUrl = c => 'https://www.youtube.com/feeds/videos.xml?channel_id=' + c.id;
+
+async function leerXml(url, canal, envuelto){
+  let txt = await fetchTexto(url);
+  if (envuelto){
+    const j = JSON.parse(txt);
+    txt = j.contents || '';
+    if (txt.startsWith('data:')) txt = decodificarDataUri(txt);
+  }
+  if (!txt.includes('<feed')) throw new Error('Respuesta inesperada');
+  return parseFeed(txt, canal);
+}
+
+async function leerRss2Json(canal){
+  const j = JSON.parse(await fetchTexto('https://api.rss2json.com/v1/api.json?rss_url=' + enc(feedUrl(canal))));
+  if (j.status !== 'ok' || !Array.isArray(j.items)) throw new Error(j.message || 'Respuesta inesperada');
+  const lista = j.items.map(it => {
+    let id = String(it.guid || '').replace(/^yt:video:/, '');
+    if (!id || id.includes(':') || id.includes('/')){
+      try { id = new URL(it.link).searchParams.get('v') || ''; } catch { id = ''; }
+    }
+    const f = Date.parse(String(it.pubDate || '').replace(' ', 'T') + 'Z');
+    return {
+      id, title: String(it.title || '').trim(),
+      desc: String(it.description || it.content || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 700),
+      date: Number.isFinite(f) ? new Date(f).toISOString() : '', canal: canal.id, vistas: null
+    };
+  }).filter(v => v.id);
+  if (!lista.length) throw new Error('Sin videos en la respuesta');
+  return lista;
+}
+
+const VIAS = [
+  c => leerXml('https://api.allorigins.win/raw?url=' + enc(feedUrl(c)), c),
+  c => leerRss2Json(c),
+  c => leerXml('https://api.codetabs.com/v1/proxy?quest=' + enc(feedUrl(c)), c),
+  c => leerXml('https://corsproxy.io/?url=' + enc(feedUrl(c)), c),
+  c => leerXml('https://api.allorigins.win/get?url=' + enc(feedUrl(c)), c, true),
+  c => leerXml('https://thingproxy.freeboard.io/fetch/' + feedUrl(c), c)
+];
+const viaRss = canal => carrera(VIAS.map(v => () => v(canal)));
+
+async function viaApi(canal, key){
+  const lista = 'UU' + canal.id.slice(2);
+  let token = '', salida = [];
+  for (let i = 0; i < CONFIG.maxPaginasApi; i++){
+    const u = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&maxResults=50&playlistId=' +
+      lista + '&key=' + enc(key) + (token ? '&pageToken=' + enc(token) : '');
+    const r = await fetch(u);
+    const j = await r.json();
+    if (!r.ok) throw new Error((j && j.error && j.error.message) || 'HTTP ' + r.status);
+    for (const it of j.items || []){
+      const s = it.snippet || {};
+      const id = (it.contentDetails && it.contentDetails.videoId) || (s.resourceId && s.resourceId.videoId);
+      if (!id || /^(Private|Deleted) video$/i.test(s.title || '')) continue;
+      salida.push({
+        id, title: (s.title || '').trim(), desc: (s.description || '').slice(0, 700),
+        date: (it.contentDetails && it.contentDetails.videoPublishedAt) || s.publishedAt,
+        canal: canal.id, vistas: null
+      });
+    }
+    token = j.nextPageToken;
+    if (!token) break;
+  }
+  return salida;
+}
+
+async function traerCanal(canal){
+  // Cada canal puede tener su propia API key; si no, se usa la global de CONFIG.apiKey.
+  const key = ((canal.apiKey || CONFIG.apiKey) || '').trim();
+  if (key){
+    try { return { videos: await viaApi(canal, key) }; }
+    catch (e) { console.warn('Astroamigos: la API de YouTube falló, se usa la vía alternativa —', e.message); }
+  }
+  return { videos: await viaRss(canal) };
+}
+
+let refrescando = false, tReintento;
+async function refrescar(){
+  if (refrescando) return;
+  clearTimeout(tReintento); state.reintentoPendiente = false;
+  refrescando = true; state.cargando = true; state.ultimoIntento = Date.now();
+  $('#btn-actualizar').disabled = true;
+  pintarEstado(); if (!visibles().length) render();
+  const antes = new Set(state.videos.map(v => v.id));
+  const res = await Promise.allSettled(CONFIG.canales.map(traerCanal));
+  let ok = 0;
+  for (const r of res){
+    if (r.status === 'fulfilled'){ ok++; combinar(r.value.videos); }
+    else console.warn('Astroamigos: no se pudo leer YouTube —', r.reason && r.reason.message);
+  }
+  state.sinConexion = ok === 0;
+  state.parcial = ok > 0 && ok < CONFIG.canales.length;
+  if (ok > 0){ state.ultimaActualizacion = Date.now(); state.reintentos = 0; guardarCache(); }
+  else if (state.reintentos < 3){
+    state.reintentos++; state.reintentoPendiente = true;
+    tReintento = setTimeout(refrescar, 20000);
+  }
+  state.cargando = false; refrescando = false;
+  $('#btn-actualizar').disabled = false;
+  const nuevos = state.videos.filter(v => !antes.has(v.id) && mostrar(v)).sort((a, b) => ts(b) - ts(a));
+  if (antes.size > 0 && nuevos.length){
+    aviso(nuevos.length === 1 ? 'Nuevo video: ' + nuevos[0].title : nuevos.length + ' videos nuevos. El último: ' + nuevos[0].title);
+  }
+  render();
+}
+
+/* ============================================================
+   Presentación
+   ============================================================ */
+function ordenar(arr, dir){ return [...arr].sort((a, b) => (dir === 'asc' ? 1 : -1) * (ts(a) - ts(b))); }
+
+function cambiarSolo(valor){
+  state.soloClub = valor;
+  LS.set(SOLO_KEY, valor ? '1' : '0');
+  render();
+}
+
+function tarjeta(v, variante){
+  const f = v.date ? new Date(v.date) : null;
+  const nuevo = f && (Date.now() - f.getTime()) < 7 * 86400000;
+  let intento = 0;
+  const img = h('img', {
+    src: 'https://i.ytimg.com/vi/' + enc(v.id) + '/hqdefault.jpg', alt: '', width: 480, height: 360,
+    loading: variante === 'grande' ? 'eager' : 'lazy', decoding: 'async',
+    onerror: e => { if (intento++) return; e.target.src = 'https://i.ytimg.com/vi/' + enc(v.id) + '/mqdefault.jpg'; }
+  });
+  const play = h('span', { class: 'play' }); play.innerHTML = ICONO_PLAY;
+  const thumb = h('button', {
+    class: 'thumb', type: 'button', 'aria-label': 'Reproducir el video: ' + v.title, onclick: () => abrirVideo(v)
+  }, img, play, nuevo && h('span', { class: 'insignia' }, 'Nuevo'));
+
+  const titulo = h('h3', { class: 'titulo' },
+    h('a', { href: urlVideo(v.id), target: '_blank', rel: 'noopener noreferrer', title: 'Ver en YouTube: ' + v.title }, v.title));
+
+  const meta = h('p', { class: 'meta' },
+    f && h('time', { datetime: v.date }, fmtFecha.format(f)),
+    f && variante === 'grande' && ' · ' + hace(f.getTime()),
+    v.vistas != null && ' · ' + fmtNum.format(v.vistas) + ' visualizaciones');
+
+  const desc = variante === 'grande' && resumen(v.desc) ? h('p', { class: 'desc' }, resumen(v.desc)) : null;
+
+  return h('article', { class: 'card card--' + variante }, thumb, h('div', { class: 'cuerpo' }, titulo, meta, desc));
+}
+
+function pintarEstado(){
+  const el = $('#estado');
+  const total = visibles().length;
+  let txt, clase = '';
+  if (state.cargando){ txt = 'Buscando videos nuevos…'; clase = 'carga'; }
+  else if (state.sinConexion){
+    clase = 'error';
+    const resto = state.reintentoPendiente ? 'Reintentando en unos segundos…' : 'Pulsa «Actualizar ahora» para reintentar.';
+    txt = state.ultimaActualizacion
+      ? 'Sin conexión con YouTube · mostrando los datos guardados (' + hace(state.ultimaActualizacion) + '). ' + resto
+      : 'No se pudo conectar con YouTube. ' + resto;
+  } else if (state.ultimaActualizacion){
+    txt = total + (total === 1 ? ' video' : ' videos') + ' · actualizado ' + hace(state.ultimaActualizacion);
+    if (state.parcial){ txt += ' · actualización parcial'; clase = 'aviso'; }
+  } else { txt = 'Buscando videos…'; clase = 'carga'; }
+  el.className = 'estado ' + clase;
+  el.textContent = txt;
+}
+
+function vacio(){
+  const leidos = state.videos.length;
+  let msg, extra = null;
+  if (state.sinConexion || !state.ultimaActualizacion){
+    msg = 'No pudimos conectar con YouTube en este momento. Revisa tu conexión a internet e inténtalo de nuevo.';
+  } else if (leidos && state.soloClub){
+    msg = 'Se leyeron ' + leidos + (leidos === 1 ? ' video' : ' videos') + ' de YouTube, pero ninguno menciona «Astroamigos Misiones» en su título o descripción.';
+    extra = h('button', { class: 'btn btn--sec', type: 'button', onclick: () => cambiarSolo(false) }, 'Mostrar todos los videos');
+  } else {
+    msg = 'Todavía no hay videos para mostrar.';
+  }
+  return h('div', { class: 'vacio' }, h('p', null, msg),
+    h('div', { class: 'acciones' }, extra, h('button', { class: 'btn', type: 'button', onclick: refrescar }, '↻ Reintentar')));
+}
+
+function pintarDestacados(lista){
+  const cont = $('#ultimos');
+  cont.replaceChildren();
+  cont.style.display = '';
+  $('#t-ultimos').textContent = lista.length >= CONFIG.destacados ? 'Últimos ' + CONFIG.destacados + ' videos'
+    : lista.length === 1 ? 'Último video' : 'Últimos videos';
+  if (!lista.length){
+    if (state.cargando){ for (let i = 0; i < CONFIG.destacados; i++) cont.append(h('div', { class: 'esq', 'aria-hidden': 'true' })); }
+    else { cont.style.display = 'block'; cont.append(vacio()); }
+    return;
+  }
+  lista.forEach((v, i) => cont.append(tarjeta(v, i === 0 ? 'grande' : 'fila')));
+}
+
+function agrupar(lista){
+  const m = new Map();
+  for (const v of lista){
+    const y = v.date ? String(new Date(v.date).getFullYear()) : 'Sin fecha';
+    if (!m.has(y)) m.set(y, []);
+    m.get(y).push(v);
+  }
+  return [...m.entries()];
+}
+
+function pintarArchivo(resto){
+  const sec = $('#seccion-archivo');
+  sec.hidden = resto.length === 0;
+  if (!resto.length) return;
+
+  let lista = resto;
+  const toks = sinTildes(state.busqueda).split(/\s+/).filter(Boolean);
+  if (toks.length) lista = lista.filter(v => { const t = sinTildes(v.title + ' ' + v.desc); return toks.every(k => t.includes(k)); });
+  lista = ordenar(lista, state.orden);
+
+  $('#cuenta').textContent = lista.length === resto.length
+    ? resto.length + (resto.length === 1 ? ' video' : ' videos')
+    : lista.length + ' de ' + resto.length + ' videos';
+
+  const cont = $('#archivo');
+  cont.replaceChildren();
+  if (!lista.length){ cont.append(h('div', { class: 'vacio' }, h('p', null, 'Ningún video coincide con tu búsqueda.'))); actualizarBotonTodo(); return; }
+
+  const grupos = agrupar(lista);
+  const filtrando = toks.length > 0;
+  grupos.forEach(([anio, vids], idx) => {
+    const abierto = state.anios.has(anio) ? state.anios.get(anio) : (filtrando || idx === 0);
+    const det = h('details', { class: 'anio' },
+      h('summary', {
+        onclick: ev => { ev.preventDefault(); det.open = !det.open; state.anios.set(anio, det.open); actualizarBotonTodo(); }
+      }, h('span', null, anio), h('span', { class: 'num' }, vids.length + (vids.length === 1 ? ' video' : ' videos'))),
+      h('div', { class: 'rejilla' }, vids.map(v => tarjeta(v, 'normal'))));
+    det.open = abierto;
+    cont.append(det);
+  });
+  actualizarBotonTodo();
+}
+
+function actualizarBotonTodo(){
+  const dets = [...document.querySelectorAll('#archivo details')];
+  $('#btn-todo').textContent = dets.length && dets.every(d => d.open) ? 'Contraer todo' : 'Expandir todo';
+}
+
+function render(){
+  const todos = ordenar(visibles(), 'desc');
+  pintarDestacados(todos.slice(0, CONFIG.destacados));
+  pintarArchivo(todos.slice(CONFIG.destacados));
+  pintarEstado();
+}
+
+/* ============================================================
+   Reproductor, ajustes y avisos
+   ============================================================ */
+const dlgVideo = $('#dlg-video');
+let focoPrevio = null;
+
+/* Reproductor de YouTube.
+   YouTube exige que la página que incrusta el video le informe su dirección (cabecera Referer);
+   si no la recibe, muestra «Error 153». Pasa cuando la página se abre como archivo local (file://)
+   o desde un contexto sin dirección web propia. En ese caso, y cuando YouTube informa un error,
+   se muestra la miniatura con un botón para ver el video en YouTube. */
+const webOk = /^https?:$/.test(location.protocol);
+let reproductor = null, apiYT = null;
+
+function limpiarReproductor(){
+  if (reproductor){ try { reproductor.destroy(); } catch {} reproductor = null; }
+  $('#vid-visor').replaceChildren();
+}
+
+function cargarApiYT(){
+  if (!apiYT){
+    apiYT = new Promise((ok, no) => {
+      if (window.YT && window.YT.Player) return ok(window.YT);
+      const previo = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => { if (typeof previo === 'function') previo(); ok(window.YT); };
+      const s = h('script', { src: 'https://www.youtube.com/iframe_api', async: true });
+      s.addEventListener('error', () => no(new Error('API de YouTube bloqueada')));
+      document.head.append(s);
+      setTimeout(() => no(new Error('API de YouTube sin respuesta')), 15000);
+    });
+    apiYT.catch(() => { apiYT = null; });
+  }
+  return apiYT;
+}
+
+function motivoFallo(codigo){
+  if (codigo === 100) return 'Este video ya no está disponible en YouTube.';
+  if (codigo === 101 || codigo === 150) return 'El autor del video no permite reproducirlo fuera de YouTube.';
+  if (codigo === 153) return 'YouTube no pudo reproducirlo dentro de esta página (error 153). Suele solucionarse al abrir la página desde una dirección web https:// y no como archivo local.';
+  return 'No se pudo reproducir el video dentro de esta página.';
+}
+
+function mostrarRespaldo(v, motivo){
+  limpiarReproductor();
+  $('#vid-visor').replaceChildren(
+    h('div', { class: 'visor-respaldo' },
+      h('img', { src: 'https://i.ytimg.com/vi/' + enc(v.id) + '/hqdefault.jpg', alt: '' }),
+      h('div', null,
+        h('p', { role: 'status' }, motivo),
+        h('a', { class: 'btn', href: urlVideo(v.id), target: '_blank', rel: 'noopener noreferrer' }, 'Ver en YouTube ↗'))));
+}
+
+function montarReproductor(v){
+  limpiarReproductor();
+  if (!webOk){
+    mostrarRespaldo(v, 'Esta página está abierta como archivo local y YouTube no permite incrustar videos así (error 153). Publícala en una dirección https:// para verlos aquí.');
+    return;
+  }
+  const params = new URLSearchParams({ autoplay: '1', rel: '0', playsinline: '1', enablejsapi: '1' });
+  if (/^https?:/.test(location.origin)) params.set('origin', location.origin);
+  const marco = h('iframe', {
+    src: 'https://www.youtube-nocookie.com/embed/' + enc(v.id) + '?' + params,
+    title: v.title, allow: 'autoplay; encrypted-media; picture-in-picture; fullscreen',
+    allowfullscreen: true, referrerpolicy: 'strict-origin-when-cross-origin'
+  });
+  $('#vid-visor').replaceChildren(marco);
+  // La API de YouTube solo se usa para detectar errores; si no carga, el iframe sigue funcionando igual.
+  cargarApiYT().then(YT => {
+    if (!marco.isConnected) return;   // se cerró el diálogo o se abrió otro video
+    reproductor = new YT.Player(marco, { events: {
+      onError: e => { if (e.target === reproductor) mostrarRespaldo(v, motivoFallo(e.data)); }
+    } });
+  }).catch(() => {});
+}
+
+function abrirVideo(v){
+  focoPrevio = document.activeElement;
+  $('#vid-titulo').textContent = v.title;
+  const f = v.date ? new Date(v.date) : null;
+  $('#vid-meta').textContent = f ? fmtFecha.format(f) : '';
+  $('#vid-enlace').href = urlVideo(v.id);
+  const d = $('#vid-desc'); d.replaceChildren();
+  if (v.desc) linkificar(v.desc.length >= 700 ? v.desc + '…' : v.desc, d);
+  montarReproductor(v);
+  dlgVideo.showModal();
+}
+dlgVideo.addEventListener('close', () => {
+  limpiarReproductor();
+  if (focoPrevio && focoPrevio.focus) focoPrevio.focus();
+});
+dlgVideo.addEventListener('click', e => { if (e.target === dlgVideo) dlgVideo.close(); });
+$('#vid-cerrar').addEventListener('click', () => dlgVideo.close());
+
+$('#btn-actualizar').addEventListener('click', refrescar);
+$('#orden').addEventListener('change', e => { state.orden = e.target.value; render(); });
+let tBusca;
+$('#q').addEventListener('input', e => { clearTimeout(tBusca); tBusca = setTimeout(() => { state.busqueda = e.target.value; render(); }, 160); });
+$('#btn-todo').addEventListener('click', () => {
+  const dets = [...document.querySelectorAll('#archivo details')];
+  const abrir = !dets.every(d => d.open);
+  dets.forEach(d => { d.open = abrir; state.anios.set(d.querySelector('summary span').textContent, abrir); });
+  actualizarBotonTodo();
+});
+
+let tAviso;
+function aviso(msg){
+  const t = $('#toast');
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(tAviso); tAviso = setTimeout(() => { t.hidden = true; }, 8000);
+}
+
+/* ============================================================
+   Cielo estrellado (decorativo)
+   ============================================================ */
+(function cielo(){
+  const c = $('#cielo'), ctx = c.getContext('2d');
+  const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let w = 0, hh = 0, estrellas = [], raf = 0;
+  function medir(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = innerWidth; hh = innerHeight;
+    c.width = w * dpr; c.height = hh * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.min(Math.round(w * hh / 9000), 220);
+    estrellas = Array.from({ length: n }, () => ({ x: Math.random() * w, y: Math.random() * hh, r: Math.random() * 1.3 + .2, p: Math.random() * 6.28, s: Math.random() * .0012 + .0004 }));
+  }
+  function dibujar(t){
+    ctx.clearRect(0, 0, w, hh);
+    ctx.fillStyle = '#fff';
+    for (const e of estrellas){
+      ctx.globalAlpha = reducido ? .7 : .45 + .45 * Math.sin(e.p + t * e.s);
+      ctx.beginPath(); ctx.arc(e.x, e.y, e.r, 0, 6.283); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if (!reducido && !document.hidden) raf = requestAnimationFrame(dibujar);
+  }
+  let anchoPrevio = 0, tRes;
+  medir(); anchoPrevio = innerWidth; dibujar(0);
+  addEventListener('resize', () => {
+    clearTimeout(tRes);
+    tRes = setTimeout(() => { if (innerWidth !== anchoPrevio){ anchoPrevio = innerWidth; cancelAnimationFrame(raf); medir(); dibujar(performance.now()); } }, 200);
+  });
+  document.addEventListener('visibilitychange', () => { if (!document.hidden){ cancelAnimationFrame(raf); dibujar(performance.now()); } });
+})();
+
+/* ============================================================
+   Arranque y actualización automática
+   ============================================================ */
+cargarCache();
+render();
+refrescar();
+setInterval(refrescar, CONFIG.refrescoMin * 60000);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && Date.now() - state.ultimoIntento > 2 * 60000) refrescar();
+});
+})();
+</script>
+</body>
+</html>
