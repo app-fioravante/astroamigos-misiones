@@ -99,8 +99,21 @@ dialog::backdrop{background:rgba(15,26,60,.4);-webkit-backdrop-filter:blur(4px);
 .lt caption{text-align:left;color:var(--mu);font-size:.85rem;padding-bottom:.5rem}
 .lt td{border-top:1px solid var(--ln);padding:.6rem .7rem;overflow-wrap:anywhere}.lt td+td{border-left:1px solid var(--ln)}
 footer{max-width:1100px;margin:4rem auto 0;padding:1.5rem 1.25rem 2.5rem;color:var(--mu);font-size:.88rem;border-top:1px solid var(--ln)}
+/* videos embebidos */
+.vid{width:100%;height:min(78vh,720px);border:0;border-radius:22px;display:block;background:#fff}
 @media(max-width:760px){.det,.g2,.pc,.hs{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.st{grid-template-columns:1fr 1fr}.big{margin:auto}.orb{opacity:.45}nav a{padding:.4rem .7rem;font-size:.88rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* modo videos: solo título + reproductor ajustado a pantalla */
+body.video-mode{height:100dvh;overflow:hidden;display:flex;flex-direction:column}
+body.video-mode .hero{flex:none;min-height:0;padding-top:.5rem;padding-bottom:.4rem}
+body.video-mode .hero > *:not(h1){display:none!important}
+body.video-mode .hero h1 .t{font-size:clamp(1.25rem,5vw,2.8rem)!important;line-height:1.1}
+body.video-mode section:not(#videos),body.video-mode footer{display:none!important}
+body.video-mode #videos{flex:1;min-height:0;width:100%;max-width:none;margin:0;padding:0 1rem 1rem;display:flex;flex-direction:column}
+body.video-mode #videos > h2,body.video-mode #videos > p{display:none!important}
+body.video-mode #videos .card{flex:1;min-height:0;padding:0;border:0;background:transparent;box-shadow:none;display:flex}
+body.video-mode #videos iframe.vid{flex:1;height:100%;min-height:0;border-radius:16px}
+body.video-mode nav a[href="#videos"]{background:var(--ink);color:#fff}
 </style></head><body>
 <div id="bar"></div>
 <section class="hero" id="inicio">
@@ -120,7 +133,7 @@ footer{max-width:1100px;margin:4rem auto 0;padding:1.5rem 1.25rem 2.5rem;color:v
  <div class="cta"><a class="btn a" href="#sistema">Explorar el Sistema Solar</a><a class="btn b" href="#luna">Ver la Luna de hoy</a></div>
 </section>
 
-<header><nav aria-label="Secciones"><a href="#historia">Nuestra Historia</a><a href="#sistema">Sistema Solar</a><a href="#telescopios">Telescopios</a><a href="#binoculares">Binoculares</a><a href="#galaxia">Vía Láctea</a><a href="#luna">Luna de hoy</a></nav></header>
+<header><nav aria-label="Secciones"><a href="#historia">Nuestra Historia</a><a href="#sistema">Sistema Solar</a><a href="#telescopios">Telescopios</a><a href="#binoculares">Binoculares</a><a href="#galaxia">Vía Láctea</a><a href="#luna">Luna de hoy</a><a href="#videos">Videos Astroamigos</a></nav></header>
 
 <section id="historia">
  <h2>Nuestra Historia</h2>
@@ -212,6 +225,15 @@ footer{max-width:1100px;margin:4rem auto 0;padding:1.5rem 1.25rem 2.5rem;color:v
  <p class="lead">Calculada para el cielo del hemisferio sur, donde la Luna creciente se ve iluminada del lado izquierdo.</p>
  <div class="card mn"><svg viewBox="-45 -45 90 90" role="img" aria-label="Fase lunar actual"><circle r="40" fill="#cfd6ee"/><path id="lp" fill="#fbf7e6"/><circle r="40" fill="none" stroke="#fff" stroke-width="1.5"/></svg>
   <div><div class="out" id="lf" style="font-size:2.4rem"></div><p id="ld" style="color:var(--mu);margin-top:.5rem"></p></div></div>
+</section>
+
+<section id="videos">
+ <h2>Videos Astroamigos</h2>
+ <p class="lead">Mirá los videos de Astroamigos Misiones acá mismo, sin salir de esta página.</p>
+ <div class="card" style="padding:.6rem">
+  <iframe class="vid" src="https://app-fioravante.github.io/astroamigos-misiones/astroamigosm" title="Videos Astroamigos Misiones" loading="lazy" allow="fullscreen; picture-in-picture; autoplay; encrypted-media" referrerpolicy="no-referrer-when-downgrade"></iframe>
+ </div>
+ <p style="margin-top:.8rem;font-size:.85rem;color:var(--mu)">Si el contenido no carga, <a href="https://app-fioravante.github.io/astroamigos-misiones/astroamigosm" target="_blank" rel="noopener">abrilo en una pestaña nueva</a>.</p>
 </section>
 <footer>Astroamigos Misiones. Tamaños y distancias del dibujo no están a escala; los datos están redondeados con fines divulgativos.</footer>
 
@@ -305,4 +327,26 @@ E('[data-n]',b=>io.observe(b));
  const nm=k<.03?'Luna nueva':k>.97?'Luna llena':f<.5?(k<.45?'Creciente':k<.55?'Cuarto creciente':'Gibosa creciente'):(k>.55?'Gibosa menguante':k>.45?'Cuarto menguante':'Menguante');
  $('lf').textContent=nm+' · '+Math.round(k*100)+'%';
  $('ld').textContent=f<.5?'La Luna va camino a estar llena: cada noche se ve un poco más iluminada.':'La Luna va camino a la nueva: cada noche se ve un poco menos iluminada.'})();
+/* modo Videos Astroamigos: oculta la pantalla inicial y deja solo el título + el reproductor ajustado a la pantalla */
+function setVideoMode(on,scroll=true){
+ document.body.classList.toggle('video-mode',on);
+ if(on&&scroll)window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('nav a').forEach(a=>{
+ a.addEventListener('click',e=>{
+  const h=a.getAttribute('href');
+  if(h==='#videos'){
+   e.preventDefault();
+   setVideoMode(true);
+   history.replaceState(null,'','#videos');
+  }else{
+   setVideoMode(false,false);
+  }
+ });
+});
+addEventListener('hashchange',()=>{
+ if(location.hash==='#videos')setVideoMode(true);
+ else setVideoMode(false,false);
+});
+if(location.hash==='#videos')setVideoMode(true,false);
 </script></body></html>
