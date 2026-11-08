@@ -3,13 +3,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Astroamigos Misiones, Descubriendo el Universo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:light;--bg:#f1f6fc;--pn:#fff;--ink:#0f1a3c;--mu:#52608a;--ln:#d3deef;--sun:#ffb21e;--vio:#5b45f0;--grn:#13a37a;--pnk:#ff5d8f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{color-scheme:light;--bg:#f1f6fc;--pn:#fff;--ink:#0f1a3c;--mu:#52608a;--ln:#d3deef;--sun:#ffb21e;--vio:#e63b1f;--grn:#13a37a;--pnk:#ff5d8f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:calc(76px + env(safe-area-inset-top,0px));scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:inherit}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 Figtree,system-ui,sans-serif;overflow-x:hidden}
-h1,h2,h3{font-family:Unbounded,Figtree,sans-serif;margin:0;letter-spacing:-.03em;line-height:1.05}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 Montserrat,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Montserrat,Montserrat,sans-serif;margin:0;letter-spacing:-.03em;line-height:1.05}
 h2{font-size:clamp(1.7rem,4.5vw,2.8rem);margin-bottom:.6rem}
 p{margin:0}.lead{max-width:60ch;color:var(--mu);margin-bottom:1.8rem}
 section{max-width:1100px;margin:0 auto;padding:5rem 1.25rem 1rem}
@@ -52,7 +52,7 @@ nav a:hover{background:var(--ink);color:#fff}
 .big{width:clamp(110px,22vw,200px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--a),var(--b) 72%);box-shadow:inset -18px -12px 30px rgba(0,0,0,.3),0 20px 50px var(--b);animation:pop .5s cubic-bezier(.2,.9,.3,1.4)}
 @keyframes pop{from{transform:scale(.6);opacity:0}}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1rem 0}
-.facts b{display:block;font:700 1.15rem Unbounded,sans-serif;letter-spacing:-.03em}.facts span{font-size:.85rem;color:var(--mu)}
+.facts b{display:block;font:700 1.15rem Montserrat,sans-serif;letter-spacing:-.03em}.facts span{font-size:.85rem;color:var(--mu)}
 .dato{border-left:4px solid var(--sun);padding-left:1rem;animation:pop .5s}
 /* telescopios */
 .tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
@@ -61,23 +61,23 @@ nav a:hover{background:var(--ink);color:#fff}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 .pc{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
 .pc div{border-top:4px solid var(--grn);padding-top:.6rem}.pc div+div{border-color:var(--pnk)}
-.pc b{display:block;font-family:Unbounded,sans-serif;font-size:.95rem;margin-bottom:.2rem}
+.pc b{display:block;font-family:Montserrat,sans-serif;font-size:.95rem;margin-bottom:.2rem}
 .ey{display:flex;flex-direction:column;align-items:center;gap:1rem}
-.ey svg{width:100%;max-width:300px;border-radius:50%;box-shadow:0 0 0 8px #fff,0 0 0 9px var(--ln),0 20px 60px rgba(91,69,240,.3)}
+.ey svg{width:100%;max-width:300px;border-radius:50%;box-shadow:0 0 0 8px #fff,0 0 0 9px var(--ln),0 20px 60px rgba(230,59,31,.3)}
 .in{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1rem}
 label{font-weight:600;font-size:.9rem;display:block}
 input[type=number]{width:7.5rem;margin-top:.3rem;border:1px solid var(--ln);border-radius:12px;padding:.55rem .7rem;font:inherit;background:var(--bg)}
 input[type=range]{width:100%;accent-color:var(--vio)}
-.out{font:700 clamp(2.6rem,8vw,4.2rem) Unbounded,sans-serif;letter-spacing:-.04em;color:var(--vio);line-height:1}
+.out{font:700 clamp(2.6rem,8vw,4.2rem) Montserrat,sans-serif;letter-spacing:-.04em;color:var(--vio);line-height:1}
 /* galaxia */
 .gal{position:relative;border-radius:32px;overflow:hidden;background:radial-gradient(circle,#fff 0%,#e4e8fb 60%,#d3d9f6);border:1px solid var(--ln)}
 canvas{display:block;width:100%;height:min(80vw,520px)}
 .gl{position:absolute;left:1rem;bottom:.8rem;font-size:.85rem;color:var(--mu)}
 .st{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem}
-.st .card{padding:1.1rem}.st b{display:block;font:700 1.5rem Unbounded,sans-serif;letter-spacing:-.04em;color:var(--vio)}.st span{font-size:.85rem;color:var(--mu)}
+.st .card{padding:1.1rem}.st b{display:block;font:700 1.5rem Montserrat,sans-serif;letter-spacing:-.04em;color:var(--vio)}.st span{font-size:.85rem;color:var(--mu)}
 /* luna */
 .mn{display:flex;gap:2rem;align-items:center;flex-wrap:wrap}
-.mn svg{width:150px;height:150px;filter:drop-shadow(0 12px 24px rgba(91,69,240,.3));animation:bob 6s ease-in-out infinite alternate}
+.mn svg{width:150px;height:150px;filter:drop-shadow(0 12px 24px rgba(230,59,31,.3));animation:bob 6s ease-in-out infinite alternate}
 @keyframes bob{to{transform:translateY(-10px) rotate(4deg)}}
 /* historia */
 .sh{font-size:1.3rem;margin:2.4rem 0 1rem}
@@ -120,7 +120,7 @@ button.rt:hover{box-shadow:0 22px 44px rgba(60,80,160,.26)}
 .rt img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.9,.3,1)}
 button.rt:hover img{transform:scale(1.07)}
 .rc{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:2.6rem 1rem .85rem;color:#fff;background:linear-gradient(transparent,rgba(15,26,60,.82));pointer-events:none}
-.rc b{display:block;font:700 clamp(.8rem,1.5vw,1rem)/1.15 Unbounded,Figtree,sans-serif;letter-spacing:-.02em}
+.rc b{display:block;font:700 clamp(.8rem,1.5vw,1rem)/1.15 Montserrat,Montserrat,sans-serif;letter-spacing:-.02em}
 .rc small{display:block;margin-top:.25rem;font-size:.82rem;line-height:1.25;opacity:.9}
 .rf .rc b{font-size:clamp(1rem,2.2vw,1.45rem)}.rf .rc small{font-size:.92rem}
 /* tarjeta sin foto */
@@ -129,7 +129,7 @@ button.rt:hover img{transform:scale(1.07)}
 .rt.art::after{content:"";position:absolute;right:-24%;top:-46%;height:118%;aspect-ratio:1;border-radius:50%;border:2px dashed rgba(15,26,60,.16)}
 .rt.art .rc{color:var(--ink);background:none;padding:1rem}
 .art.obs{--b1:#fff4cf;--b2:#ffe3a1;--a:#fff2b0;--b:#ff9d1c}
-.art.curso{--b1:#efecff;--b2:#d9d2ff;--a:#cfc6ff;--b:#5b45f0}
+.art.curso{--b1:#ffece8;--b2:#ffd2c8;--a:#ffc2b5;--b:#e63b1f}
 .art.evento{--b1:#ffe9f0;--b2:#ffcade;--a:#ffc2d6;--b:#ff5d8f}
 .art.web{--b1:#def7ee;--b2:#bdeedd;--a:#a5ecd4;--b:#13a37a}
 /* visor */
@@ -140,7 +140,7 @@ button.rt:hover img{transform:scale(1.07)}
 #rb figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:.9rem}
 #rbi{display:block;max-width:100%;max-height:calc(100dvh - 200px);object-fit:contain;border-radius:18px;background:#0e1534;box-shadow:0 30px 80px rgba(0,0,0,.55);animation:fade .35s both}
 #rbc{text-align:center;max-width:60ch}
-#rbc b{display:block;font:700 1.1rem/1.2 Unbounded,Figtree,sans-serif;letter-spacing:-.02em}
+#rbc b{display:block;font:700 1.1rem/1.2 Montserrat,Montserrat,sans-serif;letter-spacing:-.02em}
 #rbc span{opacity:.8;font-size:.92rem}
 .rbb{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:.9rem}
 .rbb button,.rbx{display:grid;place-items:center;width:46px;height:46px;padding:0;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.12);color:#fff;transition:background .2s,transform .2s}
@@ -164,18 +164,84 @@ body.video-mode #videos > h2,body.video-mode #videos > p{display:none!important}
 body.video-mode #videos .card{flex:1;min-height:0;padding:0;border:0;background:transparent;box-shadow:none;display:flex}
 body.video-mode #videos iframe.vid{flex:1;height:100%;min-height:0;border-radius:16px}
 body.video-mode nav a[href="#videos"]{background:var(--ink);color:#fff}
+
+/* ===== Interfaz tipo portal (inspirada en misiones.gob.ar) ===== */
+:root{color-scheme:light;--bg:#fff;--pn:#fff;--ink:#1b1b1f;--mu:#5d5d66;--ln:#e6e6ea;--soft:#f4f4f6;--red:#e63b1f;--pnk:#ff7a1a;--night:#070b1d;--night2:#101a3f}
+html{scroll-padding-top:calc(92px + env(safe-area-inset-top,0px))}
+section{max-width:1240px;padding:4rem 1.5rem 1rem}
+h1,h2,h3{font-family:Montserrat,system-ui,sans-serif;letter-spacing:-.015em;line-height:1.1}
+h2{font-weight:800;text-transform:uppercase;font-size:clamp(1.5rem,3.4vw,2.2rem);border-bottom:3px solid var(--red);padding-bottom:.6rem;margin-bottom:1.1rem}
+h3{font-weight:800}
+#bar{height:5px;background:linear-gradient(90deg,var(--red),var(--pnk))}
+header{position:sticky;top:env(safe-area-inset-top,0px);display:block;padding:0;background:#fff;border-bottom:1px solid var(--ln);z-index:10}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#fff;z-index:11}
+.bar{max-width:1240px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:24px;min-height:84px}
+.logo{display:flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none;line-height:1.05}
+.logo svg{width:44px;height:44px;flex:none}
+.logo img{width:48px;height:48px;flex:none;border-radius:50%;object-fit:cover;border:2px solid var(--red);background:#0b2a5c}
+.logo b{display:block;font-size:1.1rem;font-weight:800;letter-spacing:-.01em}
+.logo small{display:block;margin-top:2px;font-size:.66rem;font-weight:700;color:var(--red);letter-spacing:.04em}
+nav{display:block;margin-left:auto;padding:0;background:none;border:0;border-radius:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+nav ul{list-style:none;margin:0;padding:0}
+nav>ul{display:flex;gap:4px}
+nav li{position:relative}
+nav li>a,nav li>button{display:block;padding:30px 14px;border:0;border-radius:0;background:none;font:600 .9rem Montserrat,sans-serif;color:var(--ink);cursor:pointer;text-decoration:none}
+nav li:hover>a,nav li:hover>button,nav li:focus-within>button,nav li.open>button{background:none;color:var(--red)}
+.dd{position:absolute;left:0;top:100%;min-width:230px;margin:0;padding:8px 0;background:#fff;border:1px solid var(--ln);border-top:3px solid var(--red);box-shadow:0 12px 30px rgba(0,0,0,.14);display:none}
+nav li:hover>.dd,nav li:focus-within>.dd,nav li.open>.dd{display:block}
+nav .dd a{padding:10px 20px;font-size:.86rem;font-weight:500}
+nav .dd a:hover{background:var(--soft);color:var(--red)}
+body.video-mode nav a[href="#videos"]{background:none;color:var(--red)}
+.soc{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--ink);text-decoration:none;transition:background .2s,color .2s}
+.soc:hover{background:var(--red);color:#fff}
+.burger{display:none;margin-left:auto;width:44px;height:44px;border:0;border-radius:50%;background:none;color:var(--ink);place-items:center}
+.burger:hover{background:var(--red);color:#fff}
+/* portada */
+.hero{background:radial-gradient(ellipse at 70% 30%,var(--night2),var(--night) 70%);color:#fff;min-height:min(82vh,700px);justify-content:flex-end;padding-top:1rem;padding-bottom:3.5rem;border-bottom:6px solid var(--red)}
+.hero>canvas#stars{position:absolute;inset:0;width:100%;height:100%;max-width:none;margin:0;padding:0;z-index:0}
+.blob{display:none}
+.orb{opacity:.9}
+.hero h1{color:#fff;letter-spacing:-.02em}
+.t{font-weight:800;text-transform:uppercase}
+.sub{font-weight:700;background-image:linear-gradient(90deg,#ffb21e,#ff7a1a,#ffd9b0,#ffb21e);background-size:250% 100%}
+.intro{color:#e3e6f4}
+.btn{border-radius:0;text-transform:uppercase;letter-spacing:.04em;font-size:.88rem;font-weight:700}
+.btn.a{background:var(--red);color:#fff}.btn.a:hover{background:var(--pnk)}
+.btn.b{background:transparent;border:2px solid #fff;color:#fff}.btn.b:hover{background:#fff;color:#111}
+/* componentes */
+.card{border-radius:0;box-shadow:none;background:#fff}
+.dato{border-left-color:var(--red)}
+.tabs button,.pv button,.rl button,.dh button,input[type=number]{border-radius:0}
+.rl button[aria-pressed=true]{background:var(--red);border-color:var(--red)}
+.gal,.rt,.vid,dialog,#rbi{border-radius:0}
+dialog{border-top:4px solid var(--red)}
+.gal{background:radial-gradient(circle,#fff 0%,#f0f1f6 60%,#e2e5ef)}
+footer{max-width:none;margin:4rem 0 0;padding:2.2rem max(1.5rem,calc((100% - 1240px)/2 + 1.5rem)) 2.5rem;background:#14151c;color:#b9bac8;border-top:6px solid var(--red)}
+@media(max-width:900px){
+.soc{margin-left:auto}
+.burger{display:grid;margin-left:0}
+nav{position:absolute;left:0;right:0;top:100%;margin:0;background:#fff;border-bottom:1px solid var(--ln);display:none}
+nav.open{display:block}
+nav>ul{flex-direction:column;gap:0;padding:.5rem 1.5rem 1rem}
+nav li>a,nav li>button{padding:.9rem 0;width:100%;text-align:left;font-size:.92rem}
+.dd{position:static;display:block;min-width:0;border:0;box-shadow:none;padding:0 0 0 1rem}
+nav .dd a{padding:.6rem 0}
+}
+@media(max-width:620px){.logo b{font-size:1rem}.bar{gap:12px}}
 </style></head><body>
 <div id="bar"></div>
+<header><div class="bar"><a class="logo" href="#inicio" aria-label="Astroamigos Misiones, inicio"><img src="data:image/jpeg;base64,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" width="48" height="48" alt=""><span><b>Astroamigos Misiones</b><small>Descubriendo el Universo</small></span></a><button type="button" class="burger" id="bgr" aria-label="Abrir menú" aria-expanded="false"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg></button><nav id="menu" aria-label="Secciones"><ul><li><button type="button" aria-haspopup="true">Astroamigos</button><ul class="dd"><li><a href="#historia">Nuestra Historia</a></li><li><a href="#recuerdos">Recuerdos</a></li></ul></li><li><button type="button" aria-haspopup="true">Astronomía</button><ul class="dd"><li><a href="#sistema">Sistema Solar</a></li><li><a href="#galaxia">Vía Láctea</a></li><li><a href="#luna">Luna de hoy</a></li></ul></li><li><button type="button" aria-haspopup="true">Equipos</button><ul class="dd"><li><a href="#telescopios">Telescopios</a></li><li><a href="#binoculares">Binoculares</a></li></ul></li><li><a href="#videos">Videos Astroamigos</a></li></ul></nav><a class="soc" href="https://www.facebook.com/astroamigosmisiones.astronomia.3/" target="_blank" rel="noopener" aria-label="Facebook de Astroamigos Misiones (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M14 8V6.5c0-.7.3-1 1.1-1H17V2h-2.7C11.5 2 10 3.7 10 6.2V8H7.5v3.5H10V22h4V11.5h2.8L17.3 8z"/></svg></a></div></header>
 <section class="hero" id="inicio">
+ <canvas id="stars" aria-hidden="true"></canvas>
  <div class="blob" style="width:380px;height:380px;background:#ffd98a;left:-80px;top:10%"></div>
- <div class="blob" style="width:420px;height:420px;background:#cfc6ff;right:5%;bottom:-10%;animation-delay:-5s"></div>
+ <div class="blob" style="width:420px;height:420px;background:#ffc2b5;right:5%;bottom:-10%;animation-delay:-5s"></div>
  <svg class="orb" viewBox="0 0 600 600" aria-hidden="true">
   <g fill="none" stroke="#9aa9d6" stroke-opacity=".5" stroke-dasharray="3 7"><circle cx="300" cy="300" r="90"/><circle cx="300" cy="300" r="150"/><circle cx="300" cy="300" r="215"/><circle cx="300" cy="300" r="280"/></g>
   <circle cx="300" cy="300" r="42" fill="#ffb21e"/><circle cx="300" cy="300" r="62" fill="#ffb21e" opacity=".25"/>
   <g class="o" style="--d:9s"><circle cx="390" cy="300" r="9" fill="#9a928a"/></g>
   <g class="o" style="--d:16s"><circle cx="450" cy="300" r="14" fill="#13a37a"/><circle cx="472" cy="300" r="4" fill="#fff" stroke="#9aa9d6"/></g>
   <g class="o" style="--d:26s"><circle cx="515" cy="300" r="12" fill="#ff5d8f"/></g>
-  <g class="o" style="--d:42s"><circle cx="580" cy="300" r="22" fill="#5b45f0"/><ellipse cx="580" cy="300" rx="40" ry="9" fill="none" stroke="#5b45f0" stroke-width="3" transform="rotate(-20 580 300)"/></g>
+  <g class="o" style="--d:42s"><circle cx="580" cy="300" r="22" fill="#e8c97a"/><ellipse cx="580" cy="300" rx="40" ry="9" fill="none" stroke="#e8c97a" stroke-width="3" transform="rotate(-20 580 300)"/></g>
  </svg>
  <h1 aria-label="Astroamigos Misiones"><span class="t" id="tt"></span></h1>
  <p class="sub">Descubriendo el Universo</p>
@@ -183,7 +249,6 @@ body.video-mode nav a[href="#videos"]{background:var(--ink);color:#fff}
  <div class="cta"><a class="btn a" href="#sistema">Explorar el Sistema Solar</a><a class="btn b" href="#luna">Ver la Luna de hoy</a></div>
 </section>
 
-<header><nav aria-label="Secciones"><a href="#historia">Nuestra Historia</a><a href="#sistema">Sistema Solar</a><a href="#telescopios">Telescopios</a><a href="#binoculares">Binoculares</a><a href="#galaxia">Vía Láctea</a><a href="#luna">Luna de hoy</a><a href="#recuerdos">Recuerdos</a><a href="#videos">Videos Astroamigos</a></nav></header>
 
 <section id="historia">
  <h2>Nuestra Historia</h2>
@@ -196,7 +261,7 @@ body.video-mode nav a[href="#videos"]{background:var(--ink);color:#fff}
  <div class="hs">
   <div class="card"><div class="hh"><i style="--a:#fff2b0;--b:#ff9d1c"></i><h3>4 de agosto: empezamos</h3></div><p>Comienzan las actividades comunitarias, observando con telescopio en la vereda: en la costanera, la plaza 9 de Julio y distintos barrios de Posadas.</p></div>
   <div class="card"><div class="hh"><i style="--a:#ffc2d6;--b:#ff5d8f"></i><h3>Evento InOM</h3></div><p>Noche Internacional de Observación de la Luna en la Costanera de Posadas, con apoyo del Rotaract y la Municipalidad de Posadas.</p></div>
-  <div class="card"><div class="hh"><i style="--a:#cfc6ff;--b:#5b45f0"></i><h3>Primer curso y Planetario Móvil</h3></div><p>El primer curso de astronomía para principiantes, con apoyo de la Municipalidad de Posadas, y el Planetario Móvil Astroamigo en escuelas primarias de Posadas.</p></div>
+  <div class="card"><div class="hh"><i style="--a:#ffc2b5;--b:#e63b1f"></i><h3>Primer curso y Planetario Móvil</h3></div><p>El primer curso de astronomía para principiantes, con apoyo de la Municipalidad de Posadas, y el Planetario Móvil Astroamigo en escuelas primarias de Posadas.</p></div>
   <div class="card"><div class="hh"><i style="--a:#a5ecd4;--b:#13a37a"></i><h3>Misiones y Jardín de Estrellas</h3></div><p>Visitas a localidades de la provincia con telescopio en la vereda, y el Jardín de Estrellas en el Jardín Botánico de Posadas, con apoyo de la Municipalidad de Posadas.</p></div>
  </div>
 
@@ -253,7 +318,7 @@ body.video-mode nav a[href="#videos"]{background:var(--ink);color:#fff}
   <div><div class="out" id="bx">8×42</div>
    <label style="margin-top:1.2rem">Aumentos: <span id="vm">8</span><input type="range" id="sm" min="6" max="20" value="8"></label>
    <label style="margin-top:.8rem">Diámetro del objetivo: <span id="vo">42</span> mm<input type="range" id="so" min="20" max="80" value="42"></label></div>
-  <div><svg viewBox="0 0 120 120" style="width:130px" role="img" aria-label="Pupila de salida frente a la pupila del ojo"><circle cx="60" cy="60" r="35" fill="none" stroke="#52608a" stroke-width="2" stroke-dasharray="4 4"/><circle id="pc" cx="60" cy="60" r="26" fill="#5b45f0" fill-opacity=".85" style="transition:r .3s"/></svg>
+  <div><svg viewBox="0 0 120 120" style="width:130px" role="img" aria-label="Pupila de salida frente a la pupila del ojo"><circle cx="60" cy="60" r="35" fill="none" stroke="#52608a" stroke-width="2" stroke-dasharray="4 4"/><circle id="pc" cx="60" cy="60" r="26" fill="#e63b1f" fill-opacity=".85" style="transition:r .3s"/></svg>
    <p style="margin:.6rem 0;font-weight:600">Pupila de salida: <span id="pp"></span> mm</p><p id="vd" style="color:var(--mu)"></p><p style="font-size:.85rem;color:var(--mu);margin-top:.6rem">Punteado: pupila del ojo en penumbra (7 mm). Lleno: haz de luz que sale del ocular.</p></div>
  </div>
 </section>
@@ -354,7 +419,7 @@ $('sm').oninput=$('so').oninput=bin;bin();
 /* galaxia */
 const gc=$('gc'),g=gc.getContext('2d');let W,H,ang=0,seed=7;const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
 const B=Math.tan(12*Math.PI/180),S=[];
-for(let a=0;a<4;a++)for(let i=0;i<650;i++){const r=4+46*Math.pow(rnd(),1.1),th=a*Math.PI/2+Math.log(r/4)/B+(rnd()+rnd()+rnd()-1.5)*(1.3+.04*r)/r*2;S.push([r,th,rnd()<.15?2.6:1.5,a%2?'255,93,143':'91,69,240'])}
+for(let a=0;a<4;a++)for(let i=0;i<650;i++){const r=4+46*Math.pow(rnd(),1.1),th=a*Math.PI/2+Math.log(r/4)/B+(rnd()+rnd()+rnd()-1.5)*(1.3+.04*r)/r*2;S.push([r,th,rnd()<.15?2.6:1.5,a%2?'255,93,143':'230,59,31'])}
 for(let i=0;i<500;i++){const r=5*Math.sqrt(rnd()),th=rnd()*6.28;S.push([r,th,1.6,'230,140,0'])}
 function fit(){const b=gc.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);W=b.width;H=b.height;gc.width=W*d;gc.height=H*d;g.setTransform(d,0,0,d,0,0)}
 addEventListener('resize',fit);fit();
@@ -365,7 +430,7 @@ function gal(){const k=Math.min(W,H)/118,cx=W/2,cy=H/2;g.clearRect(0,0,W,H);
  g.beginPath();g.arc(cx,cy,26.7*k,0,6.28);g.strokeStyle='rgba(15,26,60,.25)';g.setLineDash([4,6]);g.stroke();g.setLineDash([]);
  const a=-Math.PI/2+ang*.8,sx=cx+26.7*k*Math.cos(a),sy=cy+26.7*k*Math.sin(a),p=7+2*Math.sin(ang*30);
  g.beginPath();g.arc(sx,sy,p+3,0,6.28);g.fillStyle='rgba(255,178,30,.3)';g.fill();g.beginPath();g.arc(sx,sy,4.5,0,6.28);g.fillStyle='#ffb21e';g.fill();g.strokeStyle='#0f1a3c';g.stroke();
- g.font='600 12px Figtree,sans-serif';g.fillStyle='#0f1a3c';g.fillText('Sagitario A*',cx+8,cy-8);
+ g.font='600 12px Montserrat,sans-serif';g.fillStyle='#0f1a3c';g.fillText('Sagitario A*',cx+8,cy-8);
  if(!rm)ang+=.0012;requestAnimationFrame(gal)}
 gal();
 /* contadores */
@@ -469,4 +534,25 @@ addEventListener('hashchange',()=>{
  else setVideoMode(false,false);
 });
 if(location.hash==='#videos')setVideoMode(true,false);
+</script><script>
+/* menú de la nueva cabecera */
+(function(){var b=document.getElementById('bgr'),m=document.getElementById('menu');
+function cl(){m.querySelectorAll('li.open').forEach(function(l){l.classList.remove('open')})}
+b.onclick=function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o)};
+m.addEventListener('click',function(e){if(e.target.closest('a')){cl();m.classList.remove('open');b.setAttribute('aria-expanded',false);return}
+ var t=e.target.closest('li>button');if(t){var li=t.parentNode,w=li.classList.contains('open');cl();if(!w)li.classList.add('open')}});
+document.addEventListener('click',function(e){if(!e.target.closest('nav'))cl()})})();
+/* cielo estrellado de la portada */
+(function(){var c=document.getElementById('stars'),x=c.getContext('2d'),S=[],W=0,H=0,D=Math.min(devicePixelRatio||1,2),rm=matchMedia('(prefers-reduced-motion:reduce)').matches,sh=null;
+function size(){W=c.clientWidth;H=c.clientHeight;if(!W||!H)return;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0);S=[];
+ for(var i=0,n=Math.round(W*H/2600);i<n;i++)S.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.2,p:Math.random()*6.28,s:Math.random()*.02+.005})}
+function draw(){if(c.clientWidth!==W||c.clientHeight!==H)size();
+ if(W&&H){x.clearRect(0,0,W,H);
+  for(var i=0;i<S.length;i++){var s=S[i];if(!rm)s.p+=s.s;x.globalAlpha=.45+.55*Math.abs(Math.sin(s.p));x.fillStyle=s.r>1.1?'#ffd9b0':'#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,6.283);x.fill()}
+  if(!rm){if(!sh&&Math.random()<.004)sh={x:Math.random()*W*.8,y:Math.random()*H*.4,l:0};
+   if(sh){var g=x.createLinearGradient(sh.x,sh.y,sh.x-sh.l,sh.y-sh.l*.45);g.addColorStop(0,'rgba(255,255,255,.9)');g.addColorStop(1,'rgba(255,255,255,0)');
+    x.globalAlpha=1;x.strokeStyle=g;x.lineWidth=1.6;x.beginPath();x.moveTo(sh.x,sh.y);x.lineTo(sh.x-sh.l,sh.y-sh.l*.45);x.stroke();
+    sh.x+=14;sh.y+=6;sh.l=Math.min(sh.l+4,90);if(sh.x>W+100||sh.y>H)sh=null}}}
+ if(!rm)requestAnimationFrame(draw)}
+size();draw();if(rm)addEventListener('resize',function(){size();draw()})})();
 </script></body></html>
