@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Astroamigos Misiones</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --header-bg: #0b1030;
+    --header-text: #ffffff;
+    --accent: #ffcf5a;
+    --text: #1b2036;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #070a1c;
+      --header-bg: #0b1030;
+      --header-text: #ffffff;
+      --accent: #ffcf5a;
+      --text: #e6e9f5;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #070a1c;
+    --header-bg: #0b1030;
+    --header-text: #ffffff;
+    --accent: #ffcf5a;
+    --text: #e6e9f5;
+    color-scheme: dark;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  }
+
+  /* Contenedor superior: ancho completo y 10% del alto de la pantalla */
+  .top-bar {
+    width: 100%;
+    height: 10vh;
+    background: var(--header-bg);
+    color: var(--header-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 clamp(12px, 3vw, 32px);
+    overflow: hidden;
+    border-bottom: 2px solid var(--accent);
+  }
+  .top-bar h1 {
+    margin: 0;
+    font-size: clamp(1rem, 3.2vw, 2rem);
+    letter-spacing: .5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .top-bar h1 span { color: var(--accent); }
+
+  .video-wrap {
+    height: 86%;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #000;
+  }
+  .video-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 20px;
+  }
+</style>
+</head>
+<body>
+
+<header class="top-bar">
+  <h1>Astroamigos <span>Misiones</span></h1>
+  <div class="video-wrap">
+    <iframe
+      src="https://www.youtube.com/embed/OUvzinzYAls?start=15&end=65&autoplay=1&mute=1&playsinline=1&rel=0"
+      title="Astroamigos Misiones – video"
+      allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+      allowfullscreen
+      referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+</header>
+
+<main>
+  <p>Bienvenidos a Astroamigos Misiones.</p>
+</main>
+
+</body>
+</html>
